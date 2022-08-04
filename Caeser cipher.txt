@@ -1,0 +1,49 @@
+import java.io.*;
+import java.util.*;
+public class Main
+{
+	public static void main(String[] args)throws Exception {
+	    BufferedReader br= new BufferedReader(new InputStreamReader(System.in));
+		System.out.println("Enter the text");
+		String str=br.readLine();
+		String alpha="abcdefghijklmnopqrstuvwxyz";
+		String encrypted = encrypt(str,alpha);
+		System.out.println("The encrypted series are :"+encrypted);
+		String decrypted = decrypt(encrypted,alpha);
+		System.out.println("The DECRYPTED series are :"+decrypted);
+		
+	}
+	public static String encrypt(String str,String alpha){
+	String encrypted=" ";
+	{
+	    for(int i=0;i<str.length();i++)
+	    {
+	        int c=str.charAt(i);
+	        int index=alpha.indexOf(c);
+	        index=(index+3)%26;
+	        encrypted=encrypted+alpha.charAt(index);
+	    }
+	    return encrypted;
+	}
+	}
+	public static String decrypt(String encrypted,String alpha){
+	String decrypted=" ";
+	{
+	    for(int i=0;i<encrypted.length();i++)
+	    {
+	        int c=encrypted.charAt(i);
+	        int index=alpha.indexOf(c);
+	        if(index<3)
+	        {
+	            index=(23-index)%26;
+	        }
+	        else{
+	            index=(index-3)%26;
+	        }
+	        decrypted=decrypted+alpha.charAt(index);
+	    }
+	    return decrypted;
+	}
+	    
+	}
+}
